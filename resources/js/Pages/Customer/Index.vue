@@ -6,7 +6,10 @@ import { Head } from "@inertiajs/vue3";
 
 const props = defineProps({
     customers: Array,
+    success: String
 });
+
+const successMessage = props.success;
 const form = useForm({});
 
 const handleDelete = (customerId) => {
@@ -71,6 +74,7 @@ const handleCreate = () => {
                         </tr>
                     </tbody>
                 </table>
+                <p class="success" v-if="successMessage">{{ successMessage }}</p>
             </div>
             <div class="create-btn-container">
                 <button class="create-btn btn" @click="handleCreate">
@@ -136,6 +140,12 @@ h1 {
 
 .create-btn {
     background-color: green;
+}
+.success {
+    color: green;
+    font-size: 1.5rem;
+    text-align: right;
+    margin-top: 1rem;
 }
 
 button:hover {
