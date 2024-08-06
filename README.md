@@ -19,6 +19,10 @@
 - ./vendor/bin/sail artisan db:seed
 - ./vendor/bin/sail npm run dev
 
+## Running the tests
+To run the tests, you can run the following command:
+- ./vendor/bin/sail test
+
 # Usage
 When using the application, there is already a test user set up with the following credentials:
 - email: test@example.com

@@ -151,4 +151,7 @@ watch(
     border-radius: 4px;
     cursor: pointer;
 }
+.error {
+    color: red;
+}
 </style>
