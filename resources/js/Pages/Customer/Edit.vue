@@ -55,96 +55,83 @@ watch(
 <template>
     <AuthenticatedLayout>
         <Head title="Edit customer" />
-            <FormComponent heading="Edit existing customer"@submit.prevent="handleSubmit">
+        <FormComponent
+            heading="Edit existing customer"
+            @submit.prevent="handleSubmit"
+        >
+            <!-- Step 1: Personal Information -->
+            <div v-if="currentStep === 1">
+                <InputLabel2 for="first_name" text="First Name" />
+                <TextInput2 type="text" v-model="form.first_name" id="first_name" autofocus/>
+                <p v-if="props.errors.first_name" class="error">
+                    {{ props.errors.first_name }}
+                </p>
 
-                <!-- Step 1: Personal Information -->
-                <div v-if="currentStep === 1">
-                    <InputLabel2 for="first_name" text="First Name" />
-                    <TextInput2
-                        v-model="form.first_name"
-                        id="first_name"
-                        autofocus
-                    />
-                    <p v-if="props.errors.first_name" class="error">
-                        {{ props.errors.first_name }}
-                    </p>
+                <InputLabel2 for="last_name" text="Last Name" />
+                <TextInput2 type="text" v-model="form.last_name" id="last_name" />
+                <p v-if="props.errors.last_name" class="error">
+                    {{ props.errors.last_name }}
+                </p>
 
-                    <InputLabel2 for="last_name" text="Last Name" />
-                    <TextInput2 v-model="form.last_name" id="last_name" />
-                    <p v-if="props.errors.last_name" class="error">
-                        {{ props.errors.last_name }}
-                    </p>
+                <InputLabel2 for="customer_email" text="Email" />
+                <TextInput2 type="email" v-model="form.customer_email" id="customer_email" />
+                <p v-if="props.errors.customer_email" class="error">
+                    {{ props.errors.customer_email }}
+                </p>
 
-                    <InputLabel2 for="customer_email" text="Email" />
-                    <TextInput2
-                        v-model="form.customer_email"
-                        id="customer_email"
-                    />
-                    <p v-if="props.errors.customer_email" class="error">
-                        {{ props.errors.customer_email }}
-                    </p>
+                <InputLabel2 for="phone_number" text="Phone Number" />
+                <TextInput2 type="tel" v-model="form.phone_number" id="phone_number" />
+                <p v-if="props.errors.phone_number" class="error">
+                    {{ props.errors.phone_number }}
+                </p>
 
-                    <InputLabel2 for="phone_number" text="Phone Number" />
-                    <TextInput2 v-model="form.phone_number" id="phone_number" />
-                    <p v-if="props.errors.phone_number" class="error">
-                        {{ props.errors.phone_number }}
-                    </p>
-
-                    <div class="btn-container">
-                        <button type="button" @click="nextStep" class="btn">
-                            Next
-                        </button>
-                    </div>
+                <div class="btn-container">
+                    <button type="button" @click="nextStep" class="btn">
+                        Next
+                    </button>
                 </div>
+            </div>
 
-                <!-- Step 2: Address Information -->
-                <div v-if="currentStep === 2">
-                    <InputLabel2 for="address_line_1" text="Address Line 1" />
-                    <TextInput2
-                        v-model="form.address_line_1"
-                        id="address_line_1"
-                    />
-                    <p v-if="props.errors.address_line_1" class="error">
-                        {{ props.errors.address_line_1 }}
-                    </p>
+            <!-- Step 2: Address Information -->
+            <div v-if="currentStep === 2">
+                <InputLabel2 for="address_line_1" text="Address Line 1" />
+                <TextInput2 type="text" v-model="form.address_line_1" id="address_line_1" />
+                <p v-if="props.errors.address_line_1" class="error">
+                    {{ props.errors.address_line_1 }}
+                </p>
 
-                    <InputLabel2 for="address_line_2" text="Address Line 2" />
-                    <TextInput2
-                        v-model="form.address_line_2"
-                        id="address_line_2"
-                    />
-                    <p v-if="props.errors.address_line_2" class="error">
-                        {{ props.errors.address_line_2 }}
-                    </p>
+                <InputLabel2 for="address_line_2" text="Address Line 2" />
+                <TextInput2 type="text" v-model="form.address_line_2" id="address_line_2" />
+                <p v-if="props.errors.address_line_2" class="error">
+                    {{ props.errors.address_line_2 }}
+                </p>
 
-                    <InputLabel2 for="city" text="City" />
-                    <TextInput2 v-model="form.city" id="city" />
-                    <p v-if="props.errors.city" class="error">
-                        {{ props.errors.city }}
-                    </p>
+                <InputLabel2 for="city" text="City" />
+                <TextInput2 type="text" v-model="form.city" id="city" />
+                <p v-if="props.errors.city" class="error">
+                    {{ props.errors.city }}
+                </p>
 
-                    <InputLabel2 for="county" text="County" />
-                    <TextInput2 v-model="form.county" id="county" />
-                    <p v-if="props.errors.county" class="error">
-                        {{ props.errors.county }}
-                    </p>
+                <InputLabel2 for="county" text="County" />
+                <TextInput2 type="text" v-model="form.county" id="county" />
+                <p v-if="props.errors.county" class="error">
+                    {{ props.errors.county }}
+                </p>
 
-                    <InputLabel2 for="postcode" text="Postcode" />
-                    <TextInput2 v-model="form.postcode" id="postcode" />
-                    <p v-if="props.errors.postcode" class="error">
-                        {{ props.errors.postcode }}
-                    </p>
+                <InputLabel2 for="postcode" text="Postcode" />
+                <TextInput2 type="text" v-model="form.postcode" id="postcode" />
+                <p v-if="props.errors.postcode" class="error">
+                    {{ props.errors.postcode }}
+                </p>
 
-                    <div class="btn-container">
-                        <button type="button" @click="prevStep" class="btn">
-                            Back
-                        </button>
-                        <button type="submit" class="btn">
-                            Update Customer
-                        </button>
-                    </div>
+                <div class="btn-container">
+                    <button type="button" @click="prevStep" class="btn">
+                        Back
+                    </button>
+                    <button type="submit" class="btn">Update Customer</button>
                 </div>
-            </FormComponent>
+            </div>
+        </FormComponent>
     </AuthenticatedLayout>
 </template>
 

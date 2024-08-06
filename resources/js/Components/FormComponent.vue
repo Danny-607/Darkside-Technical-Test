@@ -24,12 +24,12 @@ form{
     flex-direction: column;
     gap: 1rem;
     padding: 2rem;
-    min-width: 500px;
-    max-width: 600px;
     margin: auto;
     border: 1px solid #ccc;
     border-radius: 8px;
     background-color: #f9f9f9;
+    /* Larger form for tables and mobile layouts */
+    width: 90vw;
   }
   .form_container{
     display: flex;
@@ -38,5 +38,13 @@ form{
 
     height: 85vh;
     margin: 0
+}
+@media (min-width: 768px) {
+    /* Smaller form for desktop users */
+    form {
+        width: 40vw;
+
+    }
+
 }
 </style>

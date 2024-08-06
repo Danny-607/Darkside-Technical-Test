@@ -4,22 +4,24 @@ import { useForm } from "@inertiajs/vue3";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
 
+// Receives customers and success message from the controller
 const props = defineProps({
     customers: Array,
-    success: String
+    success: String,
 });
-
+// Success message from the controller
 const successMessage = props.success;
 const form = useForm({});
 
+// Delete the selected customer
 const handleDelete = (customerId) => {
     form.delete(route("customer.destroy", { customer: customerId }));
 };
-
+// Sends user to edit page for the selected customer
 const handleUpdate = (customerId) => {
     window.location.href = `/customer/${customerId}/edit`;
 };
-
+// Sends user to create page
 const handleCreate = () => {
     window.location.href = "/customer/create";
 };
@@ -27,8 +29,10 @@ const handleCreate = () => {
 
 <template>
     <AuthenticatedLayout>
+        <!-- sets title of the page -->
         <Head title="Customer Dashboard" />
         <div>
+            <!-- table to display customer records -->
             <h1>Customers List</h1>
             <div class="table-container">
                 <table>
@@ -58,24 +62,19 @@ const handleCreate = () => {
                             <td>{{ customer.county }}</td>
                             <td>{{ customer.postcode }}</td>
                             <td>
-                                <button
-                                    class="update-btn btn"
-                                    @click="handleUpdate(customer.id)"
-                                >
-                                    Update
-                                </button>
-                                <button
-                                    class="delete-btn btn"
-                                    @click="handleDelete(customer.id)"
-                                >
-                                    Delete
-                                </button>
+                                <!-- Buttons for deleting and sending user to edit page -->
+                                <button class="update-btn btn"@click="handleUpdate(customer.id)">Update</button>
+                                <button class="delete-btn btn" @click="handleDelete(customer.id)">Delete</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <p class="success" v-if="successMessage">{{ successMessage }}</p>
+                <!-- Displays success message with data from the controller -->
+                <p class="success" v-if="successMessage">
+                    {{ successMessage }}
+                </p>
             </div>
+            <!-- Create button -->
             <div class="create-btn-container">
                 <button class="create-btn btn" @click="handleCreate">
                     Create New Customer
@@ -86,11 +85,12 @@ const handleCreate = () => {
 </template>
 
 <style scoped>
+/* Useful for mobile and tablet screens to have an overflow creating a scrollable table */
 .table-container {
     overflow-x: auto;
     margin-top: 1rem;
 }
-
+/* Table styles */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -123,7 +123,7 @@ h1 {
     cursor: pointer;
     margin-right: 0.5rem;
 }
-
+/* Button styles  */
 .update-btn {
     background-color: lightblue;
 }
@@ -141,6 +141,12 @@ h1 {
 .create-btn {
     background-color: green;
 }
+
+button:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+/* style success paragraph */
 .success {
     color: green;
     font-size: 1.5rem;
@@ -148,7 +154,5 @@ h1 {
     margin-top: 1rem;
 }
 
-button:hover {
-    opacity: 0.8;
-}
+
 </style>

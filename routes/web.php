@@ -24,7 +24,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // Customer Routes
+    // Customer Routes (requires authentication to access)
     Route::get('/customer/dashboard', [CustomerController::class, 'index'])->name('customer.index');
     Route::get('/customer/create', [CustomerController::class, 'create'])->name('customer.create');
     Route::post('/customer', [CustomerController::class, 'store'])->name('customer.store');
