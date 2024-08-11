@@ -125,10 +125,10 @@ watch(
                 </p>
 
                 <div class="btn-container">
-                    <button type="button" @click="prevStep" class="btn">
+                    <button type="button" @click="prevStep" class="btn back-btn">
                         Back
                     </button>
-                    <button type="submit" class="btn">Update Customer</button>
+                    <button type="submit" class="btn update-btn">Update Customer</button>
                 </div>
             </div>
         </FormComponent>
@@ -143,6 +143,7 @@ watch(
     margin-top: 1rem;
 }
 .btn {
+    width: 30%;
     background-color: lightblue;
     color: white;
     border: none;
@@ -150,7 +151,20 @@ watch(
     border-radius: 4px;
     cursor: pointer;
 }
+.back-btn {
+    background-color: orange;
+}
 .error {
     color: red;
+}
+
+@media (max-width: 768px) {
+    .btn-container{
+        flex-direction: column;
+    }
+    .btn {
+        width: 100%;
+    }
+
 }
 </style>

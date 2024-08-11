@@ -125,9 +125,7 @@ watch(
                     </p>
 
                     <div class="btn-container">
-                        <button type="button" @click="prevStep" class="btn">
-                            Back
-                        </button>
+                        <button type="button" @click="prevStep" class="btn back-btn">Back</button>
                         <button type="submit" class="btn">Submit</button>
                     </div>
                 </div>
@@ -144,6 +142,7 @@ watch(
     margin-top: 1rem;
 }
 .btn {
+    width: 30%;
     background-color: lightblue;
     color: white;
     border: none;
@@ -151,7 +150,20 @@ watch(
     border-radius: 4px;
     cursor: pointer;
 }
+.back-btn {
+    background-color: orange;
+}
 .error {
     color: red;
+}
+/* Make buttons easier to click on mobile and tablet */
+@media (max-width: 768px) {
+    .btn-container{
+        flex-direction: column;
+    }
+    .btn {
+        width: 100%;
+    }
+
 }
 </style>

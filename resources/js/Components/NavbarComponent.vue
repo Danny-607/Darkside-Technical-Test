@@ -31,6 +31,7 @@
   }
   nav.active {
     position: fixed;
+    top: 0;
     z-index: 10;
     display: flex;
     flex-direction: column;
@@ -39,7 +40,7 @@
     background-color: #f5f5f5;
     color: #333;
     padding: 10px;
-    height: 100vh;
+    height: 100%;
     width: 100%;
   }
   ul.active {
@@ -49,8 +50,7 @@
     justify-content: center;
     background-color: #f5f5f5;
     color: #333;
-    padding: 10px;
-    height: 100vh;
+    height: 100%;
     width: 100%;
   }
   .hamburger_btn {

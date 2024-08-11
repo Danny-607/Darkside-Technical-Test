@@ -15,7 +15,9 @@ const form = useForm({});
 
 // Delete the selected customer
 const handleDelete = (customerId) => {
-    form.delete(route("customer.destroy", { customer: customerId }));
+    if (window.confirm("Are you sure you want to delete this customer?")) {
+        form.delete(route("customer.destroy", { customer: customerId }));
+    }
 };
 // Sends user to edit page for the selected customer
 const handleUpdate = (customerId) => {
@@ -52,15 +54,15 @@ const handleCreate = () => {
                     </thead>
                     <tbody>
                         <tr v-for="customer in customers" :key="customer.id">
-                            <td>{{ customer.first_name }}</td>
-                            <td>{{ customer.last_name }}</td>
-                            <td>{{ customer.customer_email }}</td>
-                            <td>{{ customer.phone_number }}</td>
-                            <td>{{ customer.address_line_1 }}</td>
-                            <td>{{ customer.address_line_2 }}</td>
-                            <td>{{ customer.city }}</td>
-                            <td>{{ customer.county }}</td>
-                            <td>{{ customer.postcode }}</td>
+                            <td data-cell="First Name">{{ customer.first_name }}</td>
+                            <td data-cell="Last Name">{{ customer.last_name }}</td>
+                            <td data-cell="Email">{{ customer.customer_email }}</td>
+                            <td data-cell="Phone Number">{{ customer.phone_number }}</td>
+                            <td data-cell="Address Line 1">{{ customer.address_line_1 }}</td>
+                            <td data-cell="Address Line 2">{{ customer.address_line_2 }}</td>
+                            <td data-cell="City">{{ customer.city }}</td>
+                            <td data-cell="County">{{ customer.county }}</td>
+                            <td data-cell="Postcode">{{ customer.postcode }}</td>
                             <td>
                                 <!-- Buttons for deleting and sending user to edit page -->
                                 <button class="update-btn btn"@click="handleUpdate(customer.id)">Update</button>
@@ -105,6 +107,10 @@ td {
 
 thead {
     background-color: #f9f9f9;
+}
+
+tr:nth-child(2n) {
+    background-color: #f2f2f2;
 }
 
 h1 {
@@ -153,6 +159,41 @@ button:hover {
     text-align: right;
     margin-top: 1rem;
 }
+/* Change table into a grid to remove the need for the awkward scrolling overflow */
+@media (max-width: 768px) {
+    th{
+        display: none;
+    }
+    td{
+        display: grid;
+        grid-template-columns: 17.5% auto;
+        padding: 0.5rem;
+    }
 
+    td::before{
+        content: attr(data-cell) ":";
+        font-weight: bold;
+
+        margin-bottom: 0.5rem;
+    }
+    /* Remove ":" for the buttons column */
+    td:last-child::before{
+        content: none;
+    }
+    td:last-child{
+        display: flex;
+        justify-content: center;
+    }
+}
+@media (max-width: 400px) {
+    td{
+        grid-template-columns: 35% auto;
+    }
+    h1{
+        font-size: 2rem;
+    }
+
+
+}
 
 </style>

@@ -12,3 +12,9 @@ defineProps({
         {{ text }}
     </label>
 </template>
+
+<style scoped>
+label{
+    font-size: 1.4rem;
+}
+</style>

@@ -14,36 +14,58 @@ defineProps({
 </template>
 
 <style scoped>
-h1 {
-    margin-bottom: 1rem;
-    font-size: 2.5rem;
-    align-self: center;
-}
-form{
+
+form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    padding: 2rem;
-    margin: auto;
+    padding: 1.5rem;
+    margin: 1rem;
     border: 1px solid #ccc;
     border-radius: 8px;
     background-color: #f9f9f9;
-    /* Larger form for tables and mobile layouts */
-    width: 90vw;
-  }
-  .form_container{
+    max-width: 85%;
+    min-width: 45%;
+}
+
+h1 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.form_container {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    height: 85vh;
-    margin: 0
 }
-@media (min-width: 768px) {
-    /* Smaller form for desktop users */
-    form {
-        width: 40vw;
 
+/* Change size of the form on smaller screen sizes to make it easier for users. */
+@media(max-width: 400px){
+
+    .form_container{
+        margin: 1.5rem 0;
+    }
+    form{
+        width: 100vw;
+    }
+
+}
+
+@media (min-width: 768px) {
+    form {
+        width: 75vw;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+}
+
+@media (min-width: 1024px) {
+    form {
+        width: 45vw;
     }
 
 }
